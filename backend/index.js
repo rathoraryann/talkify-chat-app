@@ -3,6 +3,7 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const connectDB = require('./connection/connection')
 const userRoutes = require("./routes/userRoutes")
+const chatRoutes = require("./routes/chatRoutes")
 
 const app = express();
 
@@ -20,6 +21,7 @@ connectDB();
 
 // -------Routes-------
 app.use('/api/user', userRoutes)
+app.use('/api/chat', chatRoutes)
 
 const PORT = process.env.PORT;
 

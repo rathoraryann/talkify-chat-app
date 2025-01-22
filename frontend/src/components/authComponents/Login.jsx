@@ -13,6 +13,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../store/slice/userSlice";
 import axios from "axios";
+import { isValidEmail } from "../miscellaneous/Regx";
 
 const Login = () => {
   const toast = useToast();
@@ -43,6 +44,18 @@ const Login = () => {
       setLoading(false);
       return;
     }
+    if (!isValidEmail(inputs.email)) {
+      toast({
+        title: "invalid email",
+        description: "format of the email should be correct",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+        position: "top",
+      });
+      setLoading(false);
+      return;
+    }
     try {
       const response = await axios.post(
         "http://localhost:5000/api/user/login",
@@ -66,7 +79,7 @@ const Login = () => {
       navigate("/chat");
     } catch (error) {
       toast({
-        title: "Error Occured!",
+        title: "Error Occured! invalid credentials",
         description: error.response.data.message,
         status: "error",
         duration: 5000,

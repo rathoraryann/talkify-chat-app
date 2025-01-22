@@ -26,7 +26,13 @@ function Home() {
         borderRadius="lg"
         borderWidth="1px"
       >
-        <Text fontSize="4xl" fontFamily="Work sans" color={"black"}>
+        <Text
+          fontSize="4xl"
+          fontFamily="Work sans"
+          color={"black"}
+          textAlign={"center"}
+          fontWeight={"900"}
+        >
           talkify
         </Text>
       </Box>

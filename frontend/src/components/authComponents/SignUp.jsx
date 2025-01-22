@@ -13,6 +13,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { login } from "../../store/slice/userSlice";
+import { isValidPass, isValidEmail } from "../miscellaneous/Regx";
 
 const SignUp = () => {
   const toast = useToast();
@@ -111,6 +112,33 @@ const SignUp = () => {
       setPicLoading(false);
       return;
     }
+
+    if (!isValidEmail(inputs.email)) {
+      toast({
+        title: "invalid email",
+        description: "format of the email should be correct",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+        position: "top",
+      });
+      setPicLoading(false);
+      return;
+    }
+    if (!isValidPass(inputs.password)) {
+      toast({
+        title: "invalid password format",
+        description:
+          "At least 8 characters in length, At least one uppercase letter (A-Z), At least one lowercase letter (a-z), At least one digit (0-9), At least one special character (like @, $, !, %, *, ?, &, etc.)",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+        position: "top",
+      });
+      setPicLoading(false);
+      return;
+    }
+
     try {
       const response = await axios.post(
         "http://localhost:5000/api/user/signup",
@@ -121,6 +149,7 @@ const SignUp = () => {
           },
         }
       );
+      console.log(response);
       if (response.data.msg == "user exists") {
         toast({
           title: "Email exists",

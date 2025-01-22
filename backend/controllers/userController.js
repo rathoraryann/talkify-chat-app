@@ -4,11 +4,9 @@ const generateToken = require('../config/generateToken')
 
 const signup = asyncHandler(async (req, res) => {
     const { name, email, password, pic } = req.body;
-
-    // const userExist = await User.findOne({ email })
     const userExist = await User.findOne({ email })
     if (userExist) {
-        res.status(400).json({ msg: "user exists" })
+        res.status(200).json({ msg: "user exists" })
         return;
     }
     const user = await User.create({
@@ -30,7 +28,6 @@ const signup = asyncHandler(async (req, res) => {
         res.status(400).json({ msg: "failed something wrong" });
         return;
     }
-    console.log(user)
 })
 
 const login = asyncHandler(async (req, res) => {
