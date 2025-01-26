@@ -44,18 +44,18 @@ const Login = () => {
       setLoading(false);
       return;
     }
-    if (!isValidEmail(inputs.email)) {
-      toast({
-        title: "invalid email",
-        description: "format of the email should be correct",
-        status: "error",
-        duration: 3000,
-        isClosable: true,
-        position: "top",
-      });
-      setLoading(false);
-      return;
-    }
+    // if (!isValidEmail(inputs.email)) {
+    //   toast({
+    //     title: "invalid email",
+    //     description: "format of the email should be correct",
+    //     status: "error",
+    //     duration: 3000,
+    //     isClosable: true,
+    //     position: "top",
+    //   });
+    //   setLoading(false);
+    //   return;
+    // }
     try {
       const response = await axios.post(
         "http://localhost:5000/api/user/login",

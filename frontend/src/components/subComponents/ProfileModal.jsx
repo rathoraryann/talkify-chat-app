@@ -8,9 +8,10 @@ import {
   ModalCloseButton,
   Button,
   useDisclosure,
-  IconButton,
   Text,
   Image,
+  Box,
+  Avatar,
 } from "@chakra-ui/react";
 
 const ProfileModal = ({ user, children }) => {
@@ -19,17 +20,23 @@ const ProfileModal = ({ user, children }) => {
   return (
     <>
       {children ? (
-        <span onClick={onOpen}>{children}</span>
+        <Box onClick={onOpen}>{children}</Box>
       ) : (
-        <IconButton d={{ base: "flex" }} icon={<ViewIcon />} onClick={onOpen} />
+        <Avatar
+          size={"sm"}
+          cursor={"pointer"}
+          name={user.name}
+          src={user.pic}
+          onClick={onOpen}
+        />
       )}
-      <Modal size="lg" onClose={onClose} isOpen={isOpen} isCentered>
+      <Modal size="xs" onClose={onClose} isOpen={isOpen} isCentered>
         <ModalOverlay />
         <ModalContent h="410px">
           <ModalHeader
             fontSize="40px"
             fontFamily="Work sans"
-            d="flex"
+            display="flex"
             justifyContent="center"
           >
             {user.name}

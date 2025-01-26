@@ -100,7 +100,7 @@ const MyChats = () => {
                 paddingX={"1px"}
               >
                 <Text px={"12px"} fontSize={{ base: "15px", sm: "19px" }}>
-                  {!chat.groupChat
+                  {!chat.isGroupChat
                     ? getSender(user, chat.users)
                     : chat.chatName}
                 </Text>
