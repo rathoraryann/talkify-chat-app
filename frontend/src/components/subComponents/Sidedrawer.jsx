@@ -68,7 +68,7 @@ const Sidedrawer = () => {
     try {
       setLoading(true);
       const response = await axios.get(
-        `http://localhost:5000/api/user?search=${search}`,
+        `${window.location.origin}/api/user?search=${search}`,
         {
           headers: {
             Authorization: `Bearer ${user.token}`,
@@ -93,7 +93,7 @@ const Sidedrawer = () => {
     try {
       setLoadingChat(true);
       const response = await axios.post(
-        `http://localhost:5000/api/chat`,
+        `${window.location.origin}/api/chat`,
         { userId },
         {
           headers: {

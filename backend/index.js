@@ -6,6 +6,7 @@ const userRoutes = require("./routes/userRoutes")
 const chatRoutes = require("./routes/chatRoutes")
 const messageRoutes = require("./routes/messageRoutes")
 const { errorHandler, notFound } = require("./middlewares/errorMiddleware")
+const path = require('path')
 
 const app = express();
 
@@ -27,15 +28,23 @@ app.use('/api/chat', chatRoutes)
 app.use("/api/message", messageRoutes)
 app.use("/api/message", messageRoutes)
 
+// ---------------------------------deployment-------------------------------------------
+app.use(express.static(path.join(__dirname, '../frontend/dist')));
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, "../frontend/dist", "index.html"))
+})
+
+
+// ---------------------------------deployment-------------------------------------------
+
+
+// -------Error handling middlewares-----------
 app.use(errorHandler)
 app.use(notFound)
 
 const PORT = process.env.PORT;
 
-//  a method in Express used to define a route handler for HTTP GET requests
-app.get('/', (req, res) => {
-    res.send('app is running! ');
-})
 
 
 //  a method used to start the server and make it listen for incoming client requests on a specified port.

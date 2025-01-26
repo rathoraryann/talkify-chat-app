@@ -40,7 +40,7 @@ const GroupChatModal = ({ children }) => {
     try {
       setQuery(true);
       const { data } = await axios.get(
-        `http://localhost:5000/api/user?search=${query}`,
+        `${window.location.origin}/api/user?search=${query}`,
         {
           headers: {
             Authorization: `Bearer ${user.token}`,
@@ -92,7 +92,7 @@ const GroupChatModal = ({ children }) => {
     }
     try {
       const { data } = await axios.post(
-        "http://localhost:5000/api/chat/group",
+        `${window.location.origin}/api/chat/group`,
         {
           name: input.groupName,
           users: JSON.stringify(input.users.map((u) => u._id)),

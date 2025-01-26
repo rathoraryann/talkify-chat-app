@@ -17,7 +17,7 @@ const MyChats = () => {
 
   const fetchChats = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/chat", {
+      const response = await axios.get(`${window.location.origin}/api/chat`, {
         headers: {
           "Content-type": "application/json",
           Authorization: `Bearer ${user.token}`,

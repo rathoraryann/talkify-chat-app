@@ -40,7 +40,7 @@ const EditGroupModal = ({ edit, fetchMessages }) => {
   const handleSearch = async (value) => {
     if (!value) return;
     const response = await axios.get(
-      `http://localhost:5000/api/user?search=${value}`,
+      `${window.location.origin}/api/user?search=${value}`,
       {
         headers: {
           Authorization: `Bearer ${user.token}`,
@@ -75,7 +75,7 @@ const EditGroupModal = ({ edit, fetchMessages }) => {
     }
     try {
       const res = await axios.put(
-        `http://localhost:5000/api/chat/groupadd`,
+        `${window.location.origin}/api/chat/groupadd`,
         {
           chatId: selectedChat._id,
           userId: userToAdd._id,
@@ -134,7 +134,7 @@ const EditGroupModal = ({ edit, fetchMessages }) => {
     }
     try {
       const res = await axios.put(
-        `http://localhost:5000/api/chat/rename`,
+        `${window.location.origin}/api/chat/rename`,
         {
           chatId: selectedChat._id,
           chatName: groupChatState.groupName,
@@ -190,7 +190,7 @@ const EditGroupModal = ({ edit, fetchMessages }) => {
     if (user._id == User._id) return;
     try {
       const res = await axios.put(
-        `http://localhost:5000/api/chat/groupremove`,
+        `${window.location.origin}/api/chat/groupremove`,
         {
           chatId: selectedChat._id,
           userId: User._id,

@@ -19,7 +19,7 @@ import ScrollableChat from "./subComponents/ScrollableChat";
 import axios from "axios";
 import io from "socket.io-client";
 
-const ENDPOINT = "http://localhost:5000";
+const ENDPOINT = `${window.location.origin}`;
 var socket, selectedChatCompare;
 
 const SingleChat = () => {
@@ -42,7 +42,7 @@ const SingleChat = () => {
       socket.emit("stop typing", selectedChat._id);
       try {
         const response = await axios.post(
-          `http://localhost:5000/api/message/`,
+          `${window.location.origin}/api/message/`,
           {
             chatId: selectedChat._id,
             message: newMessage,
@@ -72,7 +72,7 @@ const SingleChat = () => {
     setLoading(true);
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/message/${selectedChat._id}`,
+        `${window.location.origin}/api/message/${selectedChat._id}`,
         {
           headers: {
             Authorization: `Bearer ${user.token}`,
@@ -97,7 +97,7 @@ const SingleChat = () => {
     socketConnected.emit("stop typing", selectedChat._id);
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/message",
+        `${window.location.origin}/api/message`,
         {
           chatId: selectedChat._id,
           message: newMessage,
