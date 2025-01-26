@@ -141,7 +141,7 @@ const SignUp = () => {
 
     try {
       const response = await axios.post(
-        `${window.location.origin} / api / user / signup`,
+        `${window.location.origin}/api/user/signup`,
         inputs,
         {
           headers: {

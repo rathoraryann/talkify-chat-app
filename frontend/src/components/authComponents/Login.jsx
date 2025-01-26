@@ -26,6 +26,7 @@ const Login = () => {
     password: "",
   });
 
+  console.log(window.location.origin);
   const handleClick = () => {
     setShow(!show);
   };
@@ -58,7 +59,7 @@ const Login = () => {
     }
     try {
       const response = await axios.post(
-        `${window.location.origin / api / user / login}`,
+        `${window.location.origin}/api/user/login`,
         inputs,
         {
           headers: {
