@@ -42,7 +42,7 @@ const SingleChat = () => {
       socket.emit("stop typing", selectedChat._id);
       try {
         const response = await axios.post(
-          `${window.location.origin}/api/message/`,
+          `${window.location.origin}/api/message`,
           {
             chatId: selectedChat._id,
             message: newMessage,
@@ -94,7 +94,7 @@ const SingleChat = () => {
     }
   };
   const sendMessageButton = async () => {
-    socketConnected.emit("stop typing", selectedChat._id);
+    socket.emit("stop typing", selectedChat._id);
     try {
       const response = await axios.post(
         `${window.location.origin}/api/message`,
